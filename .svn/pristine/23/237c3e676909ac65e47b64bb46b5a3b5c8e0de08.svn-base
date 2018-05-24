@@ -1,0 +1,83 @@
+package util;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+
+import exception.DataAccessException;
+
+public class HibernateTemplate {
+	public void save(Object entity){
+		Session session=null;
+		try {
+			session=HibernateUtil.getSession();
+			
+			session.save(entity);
+		} catch (Exception e) {
+			throw new DataAccessException("数据访问失败",e);
+		}
+	}
+	
+	public void delete(Object entity){
+		Session session=null;
+		try {
+			session=HibernateUtil.getSession();
+			
+			session.delete(entity);
+		} catch (Exception e) {
+			throw new DataAccessException("数据访问失败",e);
+		}
+	}
+	
+	public void update(Object entity){
+		Session session=null;
+		try {
+			session=HibernateUtil.getSession();
+			
+			session.update(entity);
+		} catch (Exception e) {
+			throw new DataAccessException("数据访问失败",e);
+		}
+	}
+	
+	public void saveOrUpdate(Object entity){
+		Session session=null;
+		try {
+			session=HibernateUtil.getSession();
+			
+			session.saveOrUpdate(entity);
+		} catch (Exception e) {
+			throw new DataAccessException("数据访问失败",e);
+		}
+	}
+	
+	public Object get(Class entityClass,Serializable id){
+		Object entity=null;
+		Session session=null;
+		try {
+			session=HibernateUtil.getSession();
+			
+			entity=session.get(entityClass, id);
+		} catch (Exception e) {
+			throw new DataAccessException("数据访问失败",e);
+		}
+		return entity;
+	}
+	
+	
+	public List loadAll(Class entityClass){
+		List list=new ArrayList();
+		Session session=null;
+		try {
+			session=HibernateUtil.getSession();
+			
+			list=session.createCriteria(entityClass)
+						.list();
+		} catch (Exception e) {
+			throw new DataAccessException("数据访问失败",e);
+		}
+		return list;
+	}
+}

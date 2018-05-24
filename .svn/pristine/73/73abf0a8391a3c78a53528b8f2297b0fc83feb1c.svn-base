@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="t_user" catalog="ums" class="entity.User">
+		<column name="create_date" jdbc-type="DATE" property="createDate" type="date"></column>
+	</table>
+</hibernate-reverse-engineering>
